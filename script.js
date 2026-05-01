@@ -28,8 +28,8 @@ function unlock() {
     music.volume = 0; 
     music.play().then(() => {
         let vol = 0;
-        const fadeInterval = 50; // Every 50ms
-        const fadeStep = 0.01;   // Tiny increments
+        const fadeInterval = 50; 
+        const fadeStep = 0.01;   
         const fadeIn = setInterval(() => {
             if (vol < 1) {
                 vol += fadeStep;
@@ -68,7 +68,7 @@ function nextSection(sectionId) {
         const target = document.getElementById(sectionId);
         target.classList.add('active');
         
-        if(sectionId === 'indirect-proposal') {
+        if(sectionId === 'promise') {
             initNoButton();
         }
     }, 100);
@@ -109,15 +109,24 @@ function showStarMsg(starEl, msg) {
 
 function initNoButton() {
     const noBtn = document.getElementById('no-btn');
-    noBtn.addEventListener('mouseover', () => {
-        const padding = 150;
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - (padding * 2)) + padding;
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - (padding * 2)) + padding;
+    
+    const moveButton = () => {
+        const padding = 100;
+        // Ensure it moves significantly
+        let newX = Math.random() * (window.innerWidth - noBtn.offsetWidth - (padding * 2)) + padding;
+        let newY = Math.random() * (window.innerHeight - noBtn.offsetHeight - (padding * 2)) + padding;
         
         noBtn.style.position = 'fixed';
-        noBtn.style.left = x + 'px';
-        noBtn.style.top = y + 'px';
+        noBtn.style.left = newX + 'px';
+        noBtn.style.top = newY + 'px';
         noBtn.style.zIndex = '999999';
+        noBtn.style.transition = 'none'; // Instant jump makes it uncatchable
+    };
+
+    noBtn.addEventListener('mouseover', moveButton);
+    noBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        moveButton();
     });
 }
 
