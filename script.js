@@ -109,21 +109,39 @@ function showStarMsg(starEl, msg) {
 
 function initNoButton() {
     const noBtn = document.getElementById('no-btn');
+    const container = noBtn.parentElement;
     
     const moveButton = () => {
-        const padding = 100;
-        // Ensure it moves significantly
-        let newX = Math.random() * (window.innerWidth - noBtn.offsetWidth - (padding * 2)) + padding;
-        let newY = Math.random() * (window.innerHeight - noBtn.offsetHeight - (padding * 2)) + padding;
+        // Move within the glass-card instead of the whole screen
+        const rect = container.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
         
-        noBtn.style.position = 'fixed';
+        const maxX = rect.width - btnRect.width;
+        const maxY = rect.height - btnRect.height;
+        
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+        
+        noBtn.style.position = 'absolute';
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
-        noBtn.style.zIndex = '999999';
-        noBtn.style.transition = 'none'; // Instant jump makes it uncatchable
+        noBtn.style.margin = '0';
     };
 
-    noBtn.addEventListener('mouseover', moveButton);
+    // Trigger when mouse gets near
+    document.addEventListener('mousemove', (e) => {
+        const btnRect = noBtn.getBoundingClientRect();
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+        
+        const distance = Math.sqrt(Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2));
+        
+        // If cursor is within 100px, escape!
+        if (distance < 100) {
+            moveButton();
+        }
+    });
+
     noBtn.addEventListener('touchstart', (e) => {
         e.preventDefault();
         moveButton();
