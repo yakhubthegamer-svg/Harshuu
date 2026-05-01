@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Magical Promise | For Nisha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="romantic-bg">
+        <div class="star-layer" id="star-layer"></div>
+    </div>
+    <div id="sparkle-container"></div>
+
+    <!-- Music Controls -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="celebration-sound">
+        <source src="celebration.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Section 0: Unlock Screen -->
+    <div id="unlock-screen">
+        <div class="unlock-heart" onclick="unlock()">❤️</div>
+        <p class="unlock-text">Hold to Enter Nisha's Dream</p>
+    </div>
+
+    <!-- Section 1: The Encounter -->
+    <section id="intro">
+        <div class="glass-card">
+            <h1 id="intro-title"></h1>
+            <p id="intro-p"></p>
+            <button class="btn btn-primary" onclick="nextSection('stars')">Step into my heart ✨</button>
+        </div>
+    </section>
+
+    <!-- Section 2: Magic Galaxy -->
+    <section id="stars">
+        <div class="glass-card">
+            <h1>The Hidden Magic...</h1>
+            <p>Every star in this galaxy holds a secret thought I've never shared. Tap them, <span class="highlight">Harshuu</span>.</p>
+            <div class="galaxy">
+                <div class="star" onclick="showStarMsg(this, 'I remember your smile at Nalanda... it changed my life.')">✨</div>
+                <div class="star" onclick="showStarMsg(this, 'In a world full of people, my eyes always find you.')">🌟</div>
+                <div class="star" onclick="showStarMsg(this, 'You are the melody that plays in my head all day long.')">💫</div>
+                <div class="star" onclick="showStarMsg(this, 'I found my home the moment I met you, Nisha.')">⭐</div>
+                <div class="star" onclick="showStarMsg(this, 'You\'re not just a person; you\'re my entire sky.')">✨</div>
+            </div>
+            <p id="star-message" style="min-height: 2.5em; color: var(--secondary-pink); font-size: 1.5rem; font-weight: 600;"></p>
+            <button class="btn btn-primary" onclick="nextSection('promise')">A Promise for You... 🌙</button>
+        </div>
+    </section>
+
+    <!-- Section 3: The Promise (Indirect Proposal) -->
+    <section id="promise">
+        <div class="glass-card">
+            <h1>A Lifetime Together?</h1>
+            <p>I don't need a map or a compass as long as you're with me. <br>
+            I've built a whole world in my heart, and you're the queen of it all.</p>
+            <h2 style="font-family: 'Dancing Script'; font-size: 3.5rem; color: gold; margin-bottom: 2rem;">Can we keep walking this path together, Harshuu?</h2>
+            
+            <div id="proposal-zone" style="height: 100px; position: relative;">
+                <button id="yes-btn" class="btn btn-primary" onclick="accepted()">Forever Yes ❤️</button>
+                <button id="no-btn" class="btn" style="background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">No</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: The Celebration -->
+    <section id="success">
+        <div class="glass-card">
+            <h1>My World is Complete! ❤️</h1>
+            <p>I promise to cherish every second we spend together, Nisha.</p>
+            <h2 style="font-size: clamp(2.5rem, 6vw, 3.5rem); color: #ff4d6d; text-shadow: 0 0 20px rgba(255,77,109,0.5);">I Love You, Harshuu!</h2>
+            <div style="font-size: clamp(3rem, 8vw, 5rem); margin: 0.5rem 0;">💍🌹✨</div>
+            <div style="font-family: 'Dancing Script'; font-size: clamp(1.8rem, 4vw, 2.2rem); color: #ffd700; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,215,0,0.5); margin-top: 1rem;">
+                Jaanu ❤️ Yakhub ❤️ Harshu
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
